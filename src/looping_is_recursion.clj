@@ -39,7 +39,15 @@
       (recur (rest rest-aseq) (+ total (first rest-aseq))))))
 
 (defn parity [a-seq]
-  ":(")
+  (let [toggle (fn [a-set elem]
+                 (if (contains? a-set elem)
+                   (disj a-set elem)
+                   (conj a-set elem)))]
+    (loop [odds #{}
+           rest-aseq a-seq]
+      (if (empty? rest-aseq)
+        odds
+        (recur (toggle odds (first rest-aseq)) (rest rest-aseq))))))
 
 (defn fast-fibo [n]
   ":(")
