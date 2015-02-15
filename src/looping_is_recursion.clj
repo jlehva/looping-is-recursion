@@ -50,7 +50,10 @@
         (recur (toggle odds (first rest-aseq)) (rest rest-aseq))))))
 
 (defn fast-fibo [n]
-  ":(")
+  (loop [first 0 second 1 iter 0]
+    (if (= iter n)
+      first
+      (recur second (+ first second) (inc iter)))))
 
 (defn cut-at-repetition [a-seq]
   [":("])
