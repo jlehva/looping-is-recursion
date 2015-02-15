@@ -56,5 +56,9 @@
       (recur second (+ first second) (inc iter)))))
 
 (defn cut-at-repetition [a-seq]
-  [":("])
-
+  (loop [rest-aseq a-seq
+         acc []
+         seen #{}]
+    (if (or (empty? rest-aseq) (contains? seen (first rest-aseq)))
+      acc
+      (recur (rest rest-aseq) (conj acc (first rest-aseq)) (conj seen (first rest-aseq))))))
