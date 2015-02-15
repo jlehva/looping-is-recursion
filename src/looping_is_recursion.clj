@@ -32,7 +32,11 @@
         (recur (rest rest-aseq) (inc index)))))
 
 (defn avg [a-seq]
-  -1)
+  (loop [rest-aseq a-seq
+         total 0]
+    (if (empty? rest-aseq)
+      (/ total (count a-seq))
+      (recur (rest rest-aseq) (+ total (first rest-aseq))))))
 
 (defn parity [a-seq]
   ":(")
